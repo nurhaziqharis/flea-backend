@@ -1,11 +1,13 @@
 package com.flea.flea.domain.entity;
 
+import com.flea.flea.enumaration.Gender;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,6 +31,28 @@ public class User extends BaseEntity implements UserDetails {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private String fullname;
+
+    @Column(nullable = false)
+    private String identityNumber;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @Column(nullable = false)
+    private String phoneNumber;
+
+    @Column(nullable = false)
+    private LocalDateTime birthDate;
+
+    @Column(nullable = false)
+    private LocalDateTime lastLogin;
+
+    @OneToOne(mappedBy = "owner")
+    private Wallet wallet;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
