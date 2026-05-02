@@ -1,4 +1,4 @@
-package com.flea.flea.enumaration;
+package com.flea.flea.enumeration;
 
 public enum MoneyRequestStatus {
 

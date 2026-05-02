@@ -2,16 +2,14 @@ package com.flea.flea.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Entity
-@Table(name = "payouts")
+@Table(name = "participators")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Payout extends BaseEntity{
+public class Participator extends BaseEntity{
 
     @Column(nullable = false)
     private String username;
@@ -19,22 +17,21 @@ public class Payout extends BaseEntity{
     @Column(nullable = false)
     private String poolTitle;
 
-    @Column()
-    private Long sequence = 0L;
-
-    @Column()
-    private LocalDateTime payoutDate;
+    @Column(nullable = false)
+    private Boolean isAgree = false;
 
     @ManyToOne
     @JoinColumn(
-            name = "wallet_id"
-    )
-    private Wallet wallet;
-
-    @ManyToOne
-    @JoinColumn(
-            name = "pool_id"
+            name = "pool_id",
+            nullable = false
     )
     private Pool pool;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "user_id",
+            nullable = false
+    )
+    private User user;
 
 }

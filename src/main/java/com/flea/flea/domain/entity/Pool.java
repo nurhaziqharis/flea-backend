@@ -1,10 +1,8 @@
 package com.flea.flea.domain.entity;
-import com.flea.flea.enumaration.PoolStatus;
+import com.flea.flea.enumeration.PoolStatus;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pools")
@@ -19,7 +17,7 @@ public class Pool extends BaseEntity{
     private String title;
 
     @Column(nullable = false, precision = 19, scale = 4)
-    private BigDecimal poolAmount;
+    private BigDecimal poolAmount = BigDecimal.ZERO;
 
     @Column(nullable = false)
     private Long minParticipants = 1L;
@@ -37,6 +35,22 @@ public class Pool extends BaseEntity{
     @Column(nullable = false)
     private Long dayPayments = 1L;
 
-    /// TODO: Associate with Agreement
+    @OneToOne
+    @JoinColumn(
+            name = "participator_id"
+    )
+    private Participator poolAdmin;
+
+    @OneToOne
+    @JoinColumn(
+            name = "pool_wallet_id"
+    )
+    private PoolWallet poolWallet;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "agreement_id"
+    )
+    private Agreement agreement;
 
 }

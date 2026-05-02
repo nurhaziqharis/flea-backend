@@ -1,7 +1,7 @@
 package com.flea.flea.domain.entity;
 
-import com.flea.flea.enumaration.MoneyRequestStatus;
-import com.flea.flea.enumaration.RequestType;
+import com.flea.flea.enumeration.MoneyRequestStatus;
+import com.flea.flea.enumeration.RequestType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 public class UserMoneyRequest extends BaseEntity{
 
     @Column(nullable = false, precision = 19, scale = 4)
-    private BigDecimal amount;
+    private BigDecimal amount = BigDecimal.ZERO;
 
     @Column(nullable = false)
     private String username;

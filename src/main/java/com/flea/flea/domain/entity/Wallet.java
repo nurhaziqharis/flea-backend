@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public class Wallet extends BaseEntity {
 
     @Column(nullable = false, precision = 19, scale = 4)
-    private BigDecimal balance;
+    private BigDecimal balance = BigDecimal.ZERO;
 
     @Column(nullable = false, unique = true, length = 50)
     private String username;

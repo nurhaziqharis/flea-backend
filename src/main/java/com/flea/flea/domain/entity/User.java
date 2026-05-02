@@ -1,12 +1,13 @@
 package com.flea.flea.domain.entity;
 
-import com.flea.flea.enumaration.Gender;
+import com.flea.flea.enumeration.Gender;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
@@ -46,13 +47,22 @@ public class User extends BaseEntity implements UserDetails {
     private String phoneNumber;
 
     @Column(nullable = false)
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 
     @Column(nullable = false)
     private LocalDateTime lastLogin;
 
+    @Column(nullable = false)
+    private Boolean isVerified = false;
+
+    @Column(nullable = false)
+    private Boolean isBanned = false;
+
     @OneToOne(mappedBy = "owner")
     private Wallet wallet;
+
+    @OneToOne(mappedBy = "user")
+    private Rank rank;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
