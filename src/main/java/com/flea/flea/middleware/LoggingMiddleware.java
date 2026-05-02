@@ -1,0 +1,40 @@
+package com.flea.flea.middleware;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
+import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
+
+@Slf4j
+@Component
+@Order(1)
+public class LoggingMiddleware extends OncePerRequestFilter {
+
+    @Override
+    protected void doFilterInternal(
+            @NonNull HttpServletRequest request,
+            @NonNull HttpServletResponse response,
+            @NonNull FilterChain filterChain
+    ) throws ServletException, IOException {
+        long start = System.currentTimeMillis();
+
+        String query = request.getQueryString();
+        String uri = query != null ? request.getRequestURI() + "?" + query : request.getRequestURI();
+
+        log.info("--> {} {} [{}]", request.getMethod(), uri, request.getRemoteAddr());
+
+        try {
+            filterChain.doFilter(request, response);
+        } finally {
+            long duration = System.currentTimeMillis() - start;
+            log.info("<-- {} {} {} ({}ms)", request.getMethod(), uri, response.getStatus(), duration);
+        }
+    }
+}
