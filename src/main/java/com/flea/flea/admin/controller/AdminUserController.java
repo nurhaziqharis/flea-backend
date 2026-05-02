@@ -2,6 +2,7 @@ package com.flea.flea.admin.controller;
 
 import com.flea.flea.admin.dto.AssignRolesRequest;
 import com.flea.flea.admin.dto.CreateUserRequest;
+import com.flea.flea.admin.dto.CreateUserResponse;
 import com.flea.flea.admin.dto.UserResponse;
 import com.flea.flea.admin.service.AdminUserService;
 import jakarta.validation.Valid;
@@ -35,7 +36,7 @@ public class AdminUserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> create(@Valid @RequestBody CreateUserRequest request) {
+    public ResponseEntity<CreateUserResponse> create(@Valid @RequestBody CreateUserRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(adminUserService.createUser(request));
     }
 
