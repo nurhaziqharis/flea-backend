@@ -5,7 +5,7 @@ import com.flea.flea.admin.dto.UserResponse;
 import com.flea.flea.domain.entity.Role;
 import com.flea.flea.domain.entity.User;
 import com.flea.flea.domain.entity.Wallet;
-import com.flea.flea.dto.WalletResponse;
+import com.flea.flea.dto.response.WalletResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;

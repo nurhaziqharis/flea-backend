@@ -33,29 +33,29 @@ public class User extends BaseEntity implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column
     private String fullname;
 
-    @Column(nullable = false)
+    @Column
     private String identityNumber;
 
-    @Column(nullable = false)
+    @Column
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(nullable = false)
+    @Column
     private String phoneNumber;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate birthDate;
 
-    @Column(nullable = false)
+    @Column
     private LocalDateTime lastLogin;
 
-    @Column(nullable = false)
+    @Column
     private Boolean isVerified = false;
 
-    @Column(nullable = false)
+    @Column
     private Boolean isBanned = false;
 
     @OneToOne(mappedBy = "owner")

@@ -1,4 +1,4 @@
-package com.flea.flea.dto;
+package com.flea.flea.dto.response;
 
 import lombok.Builder;
 import lombok.Data;

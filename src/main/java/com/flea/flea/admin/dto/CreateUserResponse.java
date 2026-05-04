@@ -1,6 +1,6 @@
 package com.flea.flea.admin.dto;
 
-import com.flea.flea.dto.WalletResponse;
+import com.flea.flea.dto.response.WalletResponse;
 import lombok.Builder;
 import lombok.Data;
 
