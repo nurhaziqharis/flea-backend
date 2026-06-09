@@ -1,5 +1,8 @@
 package com.flea.flea.implementation;
 
+import com.flea.flea.domain.entity.Participator;
+import com.flea.flea.domain.entity.User;
+import com.flea.flea.domain.repository.ParticipatorRepository;
 import com.flea.flea.domain.repository.PoolRepository;
 import com.flea.flea.dto.request.NewPoolRequest;
 import com.flea.flea.dto.response.PoolResponseOnly;
@@ -26,8 +29,10 @@ import com.flea.flea.enumeration.PoolStatus;
 public class PoolImplementation implements PoolService {
 
     private final PoolRepository poolRepository;
+    private final ParticipatorRepository participatorRepository;
     private final PoolMapper poolMapper;
     private final PoolValidator poolValidator;
+    private final CommonAction commonAction;
 
     @Override
     public Page<PoolResponseOnly> getPools(int start, int off, List<String> filters) {
@@ -48,7 +53,8 @@ public class PoolImplementation implements PoolService {
     @Transactional
     public PoolResponseOnly createNewPool(NewPoolRequest newPoolRequest) {
         poolValidator.newPoolValidator(newPoolRequest);
-        Pool pool = Pool.builder()
+        User poolAdminUser = commonAction.getCurrentUser();
+        Pool pool = poolRepository.save(Pool.builder()
                 .title(newPoolRequest.getTitle())
                 .poolAmount(newPoolRequest.getPoolAmount())
                 .minParticipants(newPoolRequest.getMinParticipants())
@@ -56,8 +62,11 @@ public class PoolImplementation implements PoolService {
                 .description(newPoolRequest.getDescription())
                 .dayPayments(newPoolRequest.getDayPayments())
                 .status(PoolStatus.RECRUITING)
-                .build();
-        return poolMapper.toPoolResponseOnly(poolRepository.save(pool));
+                .poolAdmin(poolAdminUser)
+                .build());
+
+        poolRepository.save(pool);
+        return poolMapper.toPoolResponseWithAdmin(pool);
     }
 
 

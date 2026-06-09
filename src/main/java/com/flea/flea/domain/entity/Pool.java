@@ -39,7 +39,7 @@ public class Pool extends BaseEntity{
     @JoinColumn(
             name = "participator_id"
     )
-    private Participator poolAdmin;
+    private User poolAdmin;
 
     @OneToOne
     @JoinColumn(
