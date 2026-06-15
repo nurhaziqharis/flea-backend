@@ -1,16 +1,14 @@
 package com.flea.flea.controllers;
 
 import com.flea.flea.auth.UserRoleConstant;
+import com.flea.flea.dto.request.NewParticipatorRequest;
 import com.flea.flea.dto.response.ParticipatorResponseBase;
 import com.flea.flea.service.ParticipatorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,5 +41,16 @@ public class ParticipatorController {
             @RequestParam(required = true) String id
     ){
         return ResponseEntity.ok(participatorService.getParticipator(id));
+    }
+
+    @PostMapping
+    @Secured({
+            "ROLE_" + UserRoleConstant.USER,
+            "ROLE_" + UserRoleConstant.ADMINISTRATOR
+    })
+    public ResponseEntity<ParticipatorResponseBase> createNewParticipator(
+            @RequestBody NewParticipatorRequest newParticipatorRequest
+    ){
+        return ResponseEntity.ok(participatorService.)
     }
 }
