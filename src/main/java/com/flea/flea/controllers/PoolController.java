@@ -1,6 +1,7 @@
 package com.flea.flea.controllers;
 
 import com.flea.flea.auth.UserRoleConstant;
+import com.flea.flea.dto.request.EditPoolRequest;
 import com.flea.flea.dto.request.NewPoolRequest;
 import com.flea.flea.dto.response.PoolResponseOnly;
 import com.flea.flea.service.PoolService;
@@ -51,7 +52,7 @@ public class PoolController {
     }
 
     /*** Create new pool ***/
-    // POST http://localhost:8080/api/v1/pools
+    /*** POST http://localhost:8080/api/v1/pools ***/
     @PostMapping
     @Secured({
             "ROLE_" + UserRoleConstant.USER,
@@ -61,5 +62,18 @@ public class PoolController {
             @RequestBody NewPoolRequest newPoolRequest
     ){
         return ResponseEntity.ok(poolService.createNewPool(newPoolRequest));
+    }
+
+    /*** Delte existing pool ***/
+    /*** DELETE http://localhost:8080/api/v1/pools/{id} ***/
+    @DeleteMapping
+    @Secured({
+            "ROLE_" + UserRoleConstant.USER,
+            "ROLE_" + UserRoleConstant.ADMINISTRATOR
+    })
+    public ResponseEntity<PoolResponseOnly> editExistingPool(
+            @PathVariable UUID id
+    ){
+            return ResponseEntity.noContent().build();
     }
 }

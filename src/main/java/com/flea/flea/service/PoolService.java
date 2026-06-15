@@ -14,4 +14,5 @@ public interface PoolService {
 
     PoolResponseOnly createNewPool(NewPoolRequest newPoolRequest);
 
+    void deletePool(String id);
 }

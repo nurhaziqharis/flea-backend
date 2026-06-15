@@ -10,6 +10,7 @@ import com.flea.flea.mapper.PoolMapper;
 import com.flea.flea.service.PoolService;
 import com.flea.flea.specification.PoolSpecification;
 import com.flea.flea.validator.PoolValidator;
+import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -67,6 +68,15 @@ public class PoolImplementation implements PoolService {
 
         poolRepository.save(pool);
         return poolMapper.toPoolResponseWithAdmin(pool);
+    }
+
+    @Override
+    public void deletePool(String stringUUID) {
+        UUID id = commonAction.convertStringToUUID(stringUUID);
+        Pool pool = poolRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pool is not exist"));
+        poolValidator.deletePoolValidator(pool);
+        poolRepository.delete(pool);
     }
 
 

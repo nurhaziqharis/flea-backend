@@ -6,17 +6,27 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @RequiredArgsConstructor
 public class CommonAction {
 
     private final UserRepository userRepository;
 
-    User getCurrentUser(){
+    public User getCurrentUser(){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        User poolAdminUser = userRepository.findByEmail(email)
+        User currentUser = userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalStateException("Authenticated user not found"));
-        return poolAdminUser;
+        return currentUser;
+    }
+
+    public UUID convertStringToUUID(String uuidToConvert){
+        try{
+            return UUID.fromString(uuidToConvert);
+        } catch (IllegalArgumentException error) {
+            throw new RuntimeException(error.getMessage());
+        }
     }
 
 }
