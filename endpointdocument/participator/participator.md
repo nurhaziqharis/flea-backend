@@ -36,7 +36,8 @@ Base URL: `/api/v1/participator`
   "poolTitle": "string",
   "isAgree": true,
   "poolId": "uuid",
-  "userId": "uuid"
+  "userId": "uuid",
+  "turn": 1
 }
 ```
 
@@ -47,6 +48,7 @@ Base URL: `/api/v1/participator`
 | `isAgree` | `boolean` | Whether the user agrees to the pool terms |
 | `poolId` | `string (uuid)` | ID of the pool to join |
 | `userId` | `string (uuid)` | ID of the user participating |
+| `turn` | `integer` | Turn number for the participator within the pool (must be unique per pool) |
 
 ---
 
@@ -59,6 +61,7 @@ Base URL: `/api/v1/participator`
   "username": "string",
   "poolTitle": "string",
   "isAgree": true,
+  "turn": 1,
   "participatorPool": {
     "id": "uuid",
     "title": "string",
