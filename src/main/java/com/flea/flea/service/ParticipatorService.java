@@ -9,4 +9,6 @@ public interface ParticipatorService {
 
     Page<ParticipatorResponseBase> getAllParticipator(Integer start, Integer off, List<String> filters);
 
+    ParticipatorResponseBase getParticipator(String id);
+
 }

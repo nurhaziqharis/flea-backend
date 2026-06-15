@@ -33,4 +33,15 @@ public class ParticipatorController {
     ){
         return ResponseEntity.ok(participatorService.getAllParticipator(start, off, filters));
     }
+
+    @GetMapping("/{id}")
+    @Secured({
+            "ROLE_" + UserRoleConstant.USER,
+            "ROLE_" + UserRoleConstant.ADMINISTRATOR
+    })
+    public ResponseEntity<ParticipatorResponseBase> getParticipator(
+            @RequestParam(required = true) String id
+    ){
+        return ResponseEntity.ok(participatorService.getParticipator(id));
+    }
 }
