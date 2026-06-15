@@ -68,6 +68,7 @@ public class ParticipatorImplementation implements ParticipatorService {
                 .isAgree(newParticipatorRequest.getIsAgree())
                 .username(newParticipatorRequest.getUsername())
                 .poolTitle(newParticipatorRequest.getPoolTitle())
+                .turn(newParticipatorRequest.getTurn())
                 .build();
 
         participatorRepository.save(newParticipator);

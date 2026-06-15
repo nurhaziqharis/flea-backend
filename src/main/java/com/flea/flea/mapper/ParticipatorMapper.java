@@ -17,6 +17,7 @@ public class ParticipatorMapper {
         response.setUsername(participator.getUsername());
         response.setPoolTitle(participator.getPoolTitle());
         response.setIsAgree(participator.getIsAgree());
+        response.setTurn(participator.getTurn());
         response.setParticipatorPool(participator.getParticipatorPool() == null
                 ? null
                 : poolMapper.toPoolResponseOnly(participator.getParticipatorPool()));

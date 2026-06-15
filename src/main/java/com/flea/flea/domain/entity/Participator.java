@@ -20,6 +20,9 @@ public class Participator extends BaseEntity{
     @Column(nullable = false)
     private Boolean isAgree = false;
 
+    @Column(nullable = false)
+    private Integer turn = 0;
+
     @ManyToOne
     @JoinColumn(
             name = "pool_id",

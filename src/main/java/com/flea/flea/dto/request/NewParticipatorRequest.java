@@ -9,4 +9,5 @@ public class NewParticipatorRequest {
     private Boolean isAgree;
     private String poolId;
     private String userId;
+    private Integer turn;
 }

@@ -9,6 +9,7 @@ public class ParticipatorResponseBase {
     private String username;
     private String poolTitle;
     private Boolean isAgree;
+    private Integer turn;
     private PoolResponseOnly participatorPool;
     private UserResponseOnly participatorUser;
 }
