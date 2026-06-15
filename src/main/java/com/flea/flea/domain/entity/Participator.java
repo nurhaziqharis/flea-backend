@@ -25,13 +25,13 @@ public class Participator extends BaseEntity{
             name = "pool_id",
             nullable = false
     )
-    private Pool pool;
+    private Pool participatorPool;
 
     @ManyToOne
     @JoinColumn(
             name = "user_id",
             nullable = false
     )
-    private User user;
+    private User participatorUser;
 
 }

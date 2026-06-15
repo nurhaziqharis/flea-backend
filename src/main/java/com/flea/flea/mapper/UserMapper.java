@@ -5,6 +5,7 @@ import com.flea.flea.admin.dto.UserResponse;
 import com.flea.flea.domain.entity.Role;
 import com.flea.flea.domain.entity.User;
 import com.flea.flea.domain.entity.Wallet;
+import com.flea.flea.dto.response.UserResponseOnly;
 import com.flea.flea.dto.response.WalletResponse;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,22 @@ public class UserMapper {
                 .roles(user.getRoles().stream().map(Role::getName).collect(Collectors.toSet()))
                 .createdAt(user.getCreatedAt())
                 .updatedAt(user.getUpdatedAt())
+                .build();
+    }
+
+    public UserResponseOnly toUserResponseOnly(User user) {
+        return UserResponseOnly.builder()
+                .id(user.getId().toString())
+                .email(user.getEmail())
+                .username(user.getDisplayUsername())
+                .fullname(user.getFullname())
+                .identityNumber(user.getIdentityNumber())
+                .gender(user.getGender())
+                .phoneNumber(user.getPhoneNumber())
+                .birthDate(user.getBirthDate())
+                .lastLogin(user.getLastLogin())
+                .isVerified(user.getIsVerified())
+                .isBanned(user.getIsBanned())
                 .build();
     }
 

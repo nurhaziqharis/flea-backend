@@ -51,6 +51,6 @@ public class Pool extends BaseEntity{
     @JoinColumn(
             name = "agreement_id"
     )
-    private Agreement agreement;
+    private Agreement poolAgreement;
 
 }

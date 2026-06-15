@@ -29,12 +29,12 @@ public class Payout extends BaseEntity{
     @JoinColumn(
             name = "wallet_id"
     )
-    private Wallet wallet;
+    private Wallet payoutWallet;
 
     @ManyToOne
     @JoinColumn(
             name = "pool_id"
     )
-    private Pool pool;
+    private Pool payoutPool;
 
 }
