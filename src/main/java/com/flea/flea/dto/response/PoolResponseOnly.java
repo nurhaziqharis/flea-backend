@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -21,5 +20,5 @@ public class PoolResponseOnly {
     public String description;
     public PoolStatus status;
     public Long dayPayments;
-    public UserResponse poolAdmin;
+    public UserResponseOnly poolAdmin;
 }

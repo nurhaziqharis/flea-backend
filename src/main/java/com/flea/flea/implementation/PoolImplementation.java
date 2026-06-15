@@ -66,7 +66,6 @@ public class PoolImplementation implements PoolService {
                 .poolAdmin(poolAdminUser)
                 .build());
 
-        poolRepository.save(pool);
         return poolMapper.toPoolResponseWithAdmin(pool);
     }
 

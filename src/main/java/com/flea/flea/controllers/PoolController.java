@@ -1,7 +1,6 @@
 package com.flea.flea.controllers;
 
 import com.flea.flea.auth.UserRoleConstant;
-import com.flea.flea.dto.request.EditPoolRequest;
 import com.flea.flea.dto.request.NewPoolRequest;
 import com.flea.flea.dto.response.PoolResponseOnly;
 import com.flea.flea.service.PoolService;
@@ -32,9 +31,9 @@ public class PoolController {
     public ResponseEntity<Page<PoolResponseOnly>> getPools(
             @RequestParam(defaultValue = "0") int start,
             @RequestParam(defaultValue = "20") int off,
-            @RequestParam(required = false) List<String> filter
+            @RequestParam(required = false) List<String> filters
     ) {
-        return ResponseEntity.ok(poolService.getPools(start, off, filter));
+        return ResponseEntity.ok(poolService.getPools(start, off, filters));
     }
 
     /*** GET pool by id ***/

@@ -2,7 +2,7 @@ package com.flea.flea.mapper;
 
 import com.flea.flea.domain.entity.Pool;
 import com.flea.flea.dto.response.PoolResponseOnly;
-import com.flea.flea.dto.response.UserResponse;
+import com.flea.flea.dto.response.UserResponseOnly;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -32,7 +32,7 @@ public class PoolMapper {
                 .description(pool.getDescription())
                 .dayPayments(pool.getDayPayments())
                 .status(pool.getStatus())
-                .poolAdmin(UserResponse.builder()
+                .poolAdmin(UserResponseOnly.builder()
                         .id(pool.getPoolAdmin().getId().toString())
                         .email(pool.getPoolAdmin().getEmail())
                         .fullname(pool.getPoolAdmin().getFullname())
