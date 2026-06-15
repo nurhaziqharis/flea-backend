@@ -1,6 +1,4 @@
-# API Endpoint Documentation
-
-## Pool Endpoints
+# Pool Endpoints
 
 Base URL: `/api/v1/pools`
 
@@ -16,6 +14,7 @@ Base URL: `/api/v1/pools`
 | `GET` | `/api/v1/pools?start=0&off=20&filter=title:LIKE:savings&filter=status:EQ:ACTIVE` | None | Paginated `PoolResponseOnly` with filters applied |
 | `GET` | `/api/v1/pools/{id}` | None | Single `PoolResponseOnly` object |
 | `POST` | `/api/v1/pools` | `NewPoolRequest` (see below) | Created `PoolResponseOnly` object |
+| `DELETE` | `/api/v1/pools/{id}` | None | `204 No Content` |
 
 ---
 

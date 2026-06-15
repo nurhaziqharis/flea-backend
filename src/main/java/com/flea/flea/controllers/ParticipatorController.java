@@ -51,6 +51,6 @@ public class ParticipatorController {
     public ResponseEntity<ParticipatorResponseBase> createNewParticipator(
             @RequestBody NewParticipatorRequest newParticipatorRequest
     ){
-        return ResponseEntity.ok(participatorService.)
+        return ResponseEntity.ok(participatorService.createNewParticipator(newParticipatorRequest));
     }
 }
